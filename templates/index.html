@@ -1,0 +1,6 @@
+{% extends "goyo/templates/index.html" %}
+
+{% block extra_head %}
+    <!-- Custom CSS for Font Awesome path fix and other customizations -->
+    <link rel="stylesheet" href="{{ get_url(path="css/custom.css") | safe }}">
+{% endblock extra_head %}

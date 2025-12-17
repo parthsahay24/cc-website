@@ -135,4 +135,68 @@ button:focus {
    ADD YOUR CUSTOM STYLES BELOW
    ============================================ */
 
+/* ============================================
+   FONT AWESOME PATH FIX FOR GITHUB PAGES
+   ============================================
+   This overrides the absolute paths in font-awesome.min.css 
+   with relative paths that work correctly when deployed to 
+   a subdirectory (e.g., /cc-website/)
+*/
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(../fonts/fa-regular-400.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 6 Free";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url(../fonts/fa-solid-900.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Brands";
+  font-display: block;
+  font-weight: 400;
+  src: url(../fonts/fa-brands-400.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-display: block;
+  font-weight: 900;
+  src: url(../fonts/fa-solid-900.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Font Awesome 5 Free";
+  font-display: block;
+  font-weight: 400;
+  src: url(../fonts/fa-regular-400.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-display: block;
+  src: url(../fonts/fa-solid-900.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-display: block;
+  src: url(../fonts/fa-brands-400.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-display: block;
+  src: url(../fonts/fa-regular-400.woff2) format("woff2");
+}
+
 /* Your custom CSS here... */
+
