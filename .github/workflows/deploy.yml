@@ -1,18 +1,102 @@
-on: push
 name: Build and deploy GH Pages
+
+on:
+  push:
+    branches:
+      - main
+      - preview
+
+# Grant GITHUB_TOKEN the permissions to push to the repo
+permissions:
+  contents: write
+
+# Prevent concurrent deployments to gh-pages
+concurrency:
+  group: gh-pages-deployment
+  cancel-in-progress: false
+
 jobs:
-  build:
+  # Deploy to production (root of gh-pages)
+  deploy_production:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: build_and_deploy
+        with:
+          submodules: recursive  # Fetches the 'goyo' theme
+
+      - name: Build production
         uses: shalzz/zola-deploy-action@v0.21.0
         env:
-          # Target branch
           PAGES_BRANCH: gh-pages
-          # Provide personal access token
-          # TOKEN: ${{ secrets.TOKEN }}
-          # Or if publishing to the same repo, use the automatic token
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BUILD_ONLY: true
+          # Dynamically set base URL to /repo-name/
+          BUILD_FLAGS: --base-url /${{ github.event.repository.name }}/
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-repo
+          fetch-depth: 0
+
+      - name: Deploy to root (preserve preview folder)
+        run: |
+          cd gh-pages-repo
+          
+          # Configure git
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          
+          # Remove everything except .git, preview folder, and CNAME
+          find . -mindepth 1 -maxdepth 1 ! -name '.git' ! -name 'preview' ! -name 'CNAME' -exec rm -rf {} +
+          
+          # Copy production files
+          cp -r ../public/* .
+          
+          # Commit and push
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Deploy production from ${{ github.sha }}" && git push)
+
+  # Deploy to preview (preview subfolder of gh-pages)
+  deploy_preview:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/preview'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive  # Fetches the 'goyo' theme
+
+      - name: Build preview
+        uses: shalzz/zola-deploy-action@v0.21.0
+        env:
+          PAGES_BRANCH: gh-pages
+          BUILD_ONLY: true
+          # Dynamically set base URL to /repo-name/preview/
+          BUILD_FLAGS: --base-url /${{ github.event.repository.name }}/preview/
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-repo
+          fetch-depth: 0
+
+      - name: Deploy to preview subfolder
+        run: |
+          cd gh-pages-repo
+          
+          # Configure git
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          
+          # Remove old preview and deploy new one
+          rm -rf preview
+          mkdir -p preview
+          cp -r ../public/* preview/
+          
+          # Commit and push
+          git add preview
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Deploy preview from ${{ github.sha }}" && git push)
