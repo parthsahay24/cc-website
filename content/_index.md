@@ -10,13 +10,10 @@ version = "2025"
 # Hero Section - Main banner at the top
 [extra.hero]
 title = "Computer Coding Club"
-badge = "🚀 Learn, Build, and Grow Together"
-description = "Join a vibrant community of passionate coders, innovators, and tech enthusiasts. We organize workshops, hackathons, coding competitions, and contribute to open source projects that make a difference."
+subtitle = "MNNIT Allahabad"
+badge = "🚀 Devoted to Programming, Innovation, and Computer Science"
+description = "We are an educational club at Motilal Nehru National Institute of Technology, Allahabad, Prayagraj—an Institute of National Importance. MNNIT Computer Coding Club is an official student organization under the Student Activity Centre (SAC) of our college. We host several events in Computer Science and Engineering, conduct regular classes, and foster active participation from students across all courses."
 image = "hero-background.webp"
-cta_buttons = [
-    { text = "Join Us", url = "/about", style = "primary" },
-    { text = "Explore Blog", url = "/blog", style = "secondary" },
-]
 
 # Events Carousel Section - Showcase CC Club MNNIT events
 [[extra.events_carousel]]
@@ -34,7 +31,7 @@ image = "landing/events/contrihub.webp"
 [[extra.events_carousel]]
 name = "Codesangam"
 type = "Development Challenge | 2-Week Event"
-description = "A massive 2-week development challenge encompassing all tech stacks. Whether it's Web, App, or Systems, build robust solutions and showcase your engineering skills."
+description = "A massive 2 week development challenge encompassing all tech stacks. Whether it is Web, App, or Systems, build robust solutions and showcase your engineering skills."
 image = "landing/events/webster.webp"
 
 [[extra.events_carousel]]
