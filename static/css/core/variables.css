@@ -6,6 +6,10 @@
 */
 
 /* Dark Theme (Night Mode) Variables */
+:root {
+    --font-main: 'Inter', sans-serif;
+}
+
 [data-theme="night"] {
     /* PRIMARY COLOR - Gold/Amber for buttons, links, highlights */
     --color-primary: oklch(0.80 0.15 75);
