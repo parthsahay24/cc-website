@@ -1,51 +1,8 @@
 {#
   EVENTS LISTING TEMPLATE (templates/events.html)
-  
-  Purpose: Lists all club events sorted by date (upcoming first, then past)
+
+  Purpose: Lists all club events with large featured carousel and minimal cards
   URL: /events/
-  
-  Directory Structure:
-  content/events/
-    ├── _index.md (this page)
-    ├── 2024/
-    │   ├── _index.md
-    │   └── event-name.md
-    ├── 2025/
-    └── 2026/
-  
-  Context Variables:
-  - section: The events section
-  - section.subsections: Array of year folders (2024/, 2025/, etc.)
-  
-  Features:
-  1. Automatic date-based sorting (newest first)
-  2. Status-based grouping:
-     - Upcoming Events (start_date > today)
-     - Past Events (start_date <= today)
-  3. Event cards show:
-     - Title, date, duration, venue
-     - Event type badge (hackathon/workshop/etc.)
-     - Status badge (UPCOMING/COMPLETED)
-     - Brief description
-  4. Responsive grid layout
-  
-  Event Frontmatter:
-  +++
-  title = "Event Name"
-  date = 2025-12-20  # For Zola sorting
-  description = "..."
-  
-  [extra]
-  start_date = "2025-12-20"
-  end_date = "2025-12-22"  # Optional
-  venue = "Location"
-  event_type = "hackathon"
-  status = "upcoming"
-  badge = "UPCOMING"
-  +++
-  
-  Note: This template automatically scans all year subfolders,
-  so new years (2026, 2027, etc.) are automatically included.
 #}
 
 {% extends "index.html" %}
@@ -55,170 +12,256 @@
 {% endblock header %}
 
 {% block content %}
-    {# Header Section #}
-    <div class="mb-8 pb-4 border-b border-gray-500/15">
-        <h1 class="flex items-center gap-3">
-            {{ section.title }}
-            {% if section.extra.badge %}
-                <span class="text-sm font-normal px-2 py-0.5 border border-gray-500/30 rounded">{{ section.extra.badge }}</span>
-            {% endif %}
-        </h1>
-        <p class="text-gray-500">{{ section.description }}</p>
-    </div>
-
-    {# Collect all events from subsections (years) #}
+    {# Collect all events from subsections #}
     {% set all_events = [] %}
-    
-    {# 1. Add direct pages if any #}
-    {% if section.pages %}
-        {% set_global all_events = all_events | concat(with=section.pages) %}
-    {% endif %}
+    {% set events_2026 = [] %}
+    {% set events_2025 = [] %}
 
-    {# 2. Add pages from subsections #}
     {% for subsection_path in section.subsections %}
         {% set subsection = get_section(path=subsection_path) %}
         {% if subsection.pages %}
-            {% set_global all_events = all_events | concat(with=subsection.pages) %}
-        {% endif %}
-    {% endfor %}
-
-    {# Categorize events #}
-    {% set upcoming_events = [] %}
-    {% set past_events = [] %}
-    {# Get current timestamp #}
-    {% set current_ts = now() | date(format="%s") | int %}
-
-    {% for event in all_events %}
-        {% if event.date %}
-            {# Convert event date to timestamp #}
-            {% set event_ts = event.date | date(format="%s") | int %}
-            
-            {% if event_ts >= current_ts %}
-                {% set_global upcoming_events = upcoming_events | concat(with=[event]) %}
-            {% else %}
-                {% set_global past_events = past_events | concat(with=[event]) %}
-            {% endif %}
-        {% endif %}
-    {% endfor %}
-
-    {# Upcoming Events Section #}
-    <div class="mt-8">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            📅 Upcoming Events
-            <span class="text-sm font-normal text-gray-500">({{ upcoming_events | length }})</span>
-        </h2>
-        
-        {% if upcoming_events | length > 0 %}
-            <div class="grid gap-6 md:grid-cols-2">
-                {# We assume events are sorted by date desc (default). Reverse to get nearest date first for upcoming #}
-                {% for event in upcoming_events | reverse %} 
-                    <a href="{{ event.permalink }}" class="card bg-base-200 shadow-xl border border-gray-500/15 transition hover:border-primary hover:shadow-2xl overflow-hidden group h-full flex flex-col">
-                        <div class="card-body flex-grow">
-                            <div class="flex justify-between items-start">
-                                <h3 class="card-title group-hover:text-primary transition-colors text-xl">
-                                    {{ event.title }}
-                                </h3>
-                                {% if event.extra.badge %}
-                                    <div class="badge badge-secondary shrink-0">{{ event.extra.badge }}</div>
-                                {% endif %}
-                            </div>
-                            
-                            <div class="flex flex-col gap-2 text-sm text-gray-500 mt-3 mb-4">
-                                <span class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                    {{ event.date | date(format="%B %d, %Y") }}
-                                </span>
-                                {% if event.extra.location %}
-                                <span class="flex items-center gap-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                                    {{ event.extra.location }}
-                                </span>
-                                {% endif %}
-                            </div>
-                            
-                            <p class="text-base-content/80 line-clamp-3 mb-4">
-                                {{ event.description | default(value=event.summary) | default(value="") }}
-                            </p>
-                            
-                            <div class="mt-auto pt-4">
-                                <span class="btn btn-primary btn-sm w-full">Register Now</span>
-                            </div>
-                        </div>
-                    </a>
-                {% endfor %}
-            </div>
-        {% else %}
-            <div class="alert bg-base-200 border-gray-500/15">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <span>No upcoming events scheduled at the moment. Check back soon!</span>
-            </div>
-        {% endif %}
-    </div>
-
-    {# Past Events Section - Grouped by Year #}
-    <div class="mt-16">
-        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-            📜 Past Events
-        </h2>
-        
-        {# Group past events by year #}
-        {# We iterate through years descending #}
-        
-        {% set current_year = now() | date(format="%Y") | int %}
-        {% set start_year = 2023 %} {# Adjust based on your history #}
-        
-        <div class="space-y-8">
-            {% for year in range(start=start_year, end=current_year + 1) | reverse %}
-                {% set_global year_events = [] %}
-                {% for event in past_events %}
-                    {% if event.date | date(format="%Y") | int == year %}
-                        {% set_global year_events = year_events | concat(with=[event]) %}
-                    {% endif %}
-                {% endfor %}
-                
-                {% if year_events | length > 0 %}
-                    <div class="collapse collapse-arrow bg-base-200 border border-gray-500/15">
-                        <input type="checkbox" /> 
-                        <div class="collapse-title text-xl font-medium flex justify-between items-center">
-                            <span>{{ year }} Events</span>
-                            <span class="badge badge-sm">{{ year_events | length }}</span>
-                        </div>
-                        <div class="collapse-content">
-                            <div class="grid gap-4 pt-4">
-                                {% for event in year_events %}
-                                    <a href="{{ event.permalink }}" class="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-lg hover:bg-base-300 transition border border-transparent hover:border-gray-500/20">
-                                        <div>
-                                            <h3 class="font-bold text-lg hover:text-primary transition-colors">
-                                                {{ event.title }}
-                                            </h3>
-                                            <div class="text-sm text-gray-500 mt-1 flex gap-3">
-                                                <span>{{ event.date | date(format="%B %d") }}</span>
-                                                {% if event.extra.location %}
-                                                    <span>• {{ event.extra.location }}</span>
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center gap-3">
-                                            {% if event.extra.badge %}
-                                                <div class="badge badge-outline text-xs">{{ event.extra.badge }}</div>
-                                            {% endif %}
-                                            <span class="text-xs text-gray-400">View Recap →</span>
-                                        </div>
-                                    </a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
+            {% for event in subsection.pages %}
+                {% set_global all_events = all_events | concat(with=[event]) %}
+                {% set event_year = event.date | date(format="%Y") %}
+                {% if event_year == "2026" %}
+                    {% set_global events_2026 = events_2026 | concat(with=[event]) %}
+                {% elif event_year == "2025" %}
+                    {% set_global events_2025 = events_2025 | concat(with=[event]) %}
                 {% endif %}
             {% endfor %}
+        {% endif %}
+    {% endfor %}
+
+    {# Large Featured Carousel #}
+    {% if all_events | length > 0 %}
+    <div class="featured-carousel" data-featured-carousel>
+        <div class="featured-slides">
+            {% for event in all_events %}
+            <div class="featured-slide {% if loop.first %}active{% endif %}">
+                {# Background Image #}
+                {% if event.extra.images %}
+                <div class="featured-slide-bg">
+                    <img src="{{ event.extra.images | first }}" alt="{{ event.title }}">
+                </div>
+                {% endif %}
+
+                {# Content Overlay #}
+                <div class="featured-slide-content">
+                    <div class="featured-slide-info">
+                        {% if event.extra.badge %}
+                        <span class="featured-badge {{ event.extra.event_type | default(value='') }}">{{ event.extra.badge }}</span>
+                        {% endif %}
+
+                        <h2 class="featured-title">{{ event.title }}</h2>
+
+                        <p class="featured-description">{{ event.description }}</p>
+
+                        <div class="featured-meta">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                {{ event.date | date(format="%B %d, %Y") }}
+                            </span>
+                            {% if event.extra.location %}
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                {{ event.extra.location }}
+                            </span>
+                            {% endif %}
+                        </div>
+
+                        <div class="featured-actions">
+                            <a href="{{ event.permalink }}" class="featured-btn primary">
+                                View Details
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                            </a>
+                            {% if event.extra.external_link %}
+                            <a href="{{ event.extra.external_link }}" target="_blank" rel="noopener" class="featured-btn secondary">
+                                Visit Site
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {# Navigation Dots #}
+        {% if all_events | length > 1 %}
+        <div class="featured-nav">
+            {% for event in all_events %}
+            <button class="featured-dot {% if loop.first %}active{% endif %}" data-index="{{ loop.index0 }}">
+                <span class="featured-dot-label">{{ event.title }}</span>
+            </button>
+            {% endfor %}
+        </div>
+
+        {# Arrow Navigation #}
+        <button class="featured-arrow prev" aria-label="Previous">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button class="featured-arrow next" aria-label="Next">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {# Year Filter Tabs #}
+    <div class="events-section">
+        <div class="events-header">
+            <h2 class="events-section-title">All Events</h2>
+            <div class="events-tabs" role="tablist">
+                <button class="events-tab active" role="tab" aria-selected="true" data-year="2026">
+                    2026 <span class="events-tab-count">{{ events_2026 | length }}</span>
+                </button>
+                <button class="events-tab" role="tab" aria-selected="false" data-year="2025">
+                    2025 <span class="events-tab-count">{{ events_2025 | length }}</span>
+                </button>
+            </div>
+        </div>
+
+        {# 2026 Events #}
+        <div class="events-tab-content active" data-year="2026">
+            {% if events_2026 | length > 0 %}
+            <div class="events-list">
+                {% for event in events_2026 %}
+                <a href="{{ event.permalink }}" class="event-item">
+                    <div class="event-item-image">
+                        {% if event.extra.images %}
+                        <img src="{{ event.extra.images | first }}" alt="{{ event.title }}" loading="lazy">
+                        {% endif %}
+                    </div>
+                    <div class="event-item-content">
+                        <div class="event-item-header">
+                            <h3 class="event-item-title">{{ event.title }}</h3>
+                            {% if event.extra.badge %}
+                            <span class="event-item-badge {{ event.extra.event_type | default(value='') }}">{{ event.extra.badge }}</span>
+                            {% endif %}
+                        </div>
+                        <p class="event-item-desc">{{ event.description }}</p>
+                        <div class="event-item-meta">
+                            <span>{{ event.date | date(format="%b %d, %Y") }}</span>
+                            {% if event.extra.location %}
+                            <span>{{ event.extra.location }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="event-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="events-empty">
+                <p>No events for 2026 yet</p>
+            </div>
+            {% endif %}
+        </div>
+
+        {# 2025 Events #}
+        <div class="events-tab-content" data-year="2025">
+            {% if events_2025 | length > 0 %}
+            <div class="events-list">
+                {% for event in events_2025 %}
+                <a href="{{ event.permalink }}" class="event-item">
+                    <div class="event-item-image">
+                        {% if event.extra.images %}
+                        <img src="{{ event.extra.images | first }}" alt="{{ event.title }}" loading="lazy">
+                        {% endif %}
+                    </div>
+                    <div class="event-item-content">
+                        <div class="event-item-header">
+                            <h3 class="event-item-title">{{ event.title }}</h3>
+                            {% if event.extra.badge %}
+                            <span class="event-item-badge {{ event.extra.event_type | default(value='') }}">{{ event.extra.badge }}</span>
+                            {% endif %}
+                        </div>
+                        <p class="event-item-desc">{{ event.description }}</p>
+                        <div class="event-item-meta">
+                            <span>{{ event.date | date(format="%b %d, %Y") }}</span>
+                            {% if event.extra.location %}
+                            <span>{{ event.extra.location }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="event-item-arrow">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="events-empty">
+                <p>No events for 2025 yet</p>
+            </div>
+            {% endif %}
         </div>
     </div>
 
-    {# Categories Section - Moved to bottom #}
-    <div class="mt-20 pt-10 border-t border-gray-500/15">
-        <h2 class="text-xl font-bold mb-6 text-gray-400 uppercase tracking-wider text-sm">Event Categories</h2>
-        <div class="prose max-w-none text-sm text-gray-500">
-            {{ section.content | safe }}
-        </div>
-    </div>
+    {# JavaScript #}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Featured Carousel
+            const featuredCarousel = document.querySelector('[data-featured-carousel]');
+            if (featuredCarousel) {
+                const slides = featuredCarousel.querySelectorAll('.featured-slide');
+                const dots = featuredCarousel.querySelectorAll('.featured-dot');
+                const prevBtn = featuredCarousel.querySelector('.featured-arrow.prev');
+                const nextBtn = featuredCarousel.querySelector('.featured-arrow.next');
+
+                if (slides.length > 1) {
+                    let current = 0;
+                    let timer;
+
+                    function showSlide(index) {
+                        if (index < 0) index = slides.length - 1;
+                        if (index >= slides.length) index = 0;
+
+                        slides.forEach((s, i) => s.classList.toggle('active', i === index));
+                        dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                        current = index;
+                    }
+
+                    function nextSlide() { showSlide(current + 1); }
+                    function prevSlide() { showSlide(current - 1); }
+
+                    function startTimer() { timer = setInterval(nextSlide, 5000); }
+                    function stopTimer() { clearInterval(timer); }
+
+                    dots.forEach((dot, i) => {
+                        dot.addEventListener('click', () => {
+                            stopTimer();
+                            showSlide(i);
+                            startTimer();
+                        });
+                    });
+
+                    if (prevBtn) prevBtn.addEventListener('click', () => { stopTimer(); prevSlide(); startTimer(); });
+                    if (nextBtn) nextBtn.addEventListener('click', () => { stopTimer(); nextSlide(); startTimer(); });
+
+                    featuredCarousel.addEventListener('mouseenter', stopTimer);
+                    featuredCarousel.addEventListener('mouseleave', startTimer);
+
+                    startTimer();
+                }
+            }
+
+            // Year Tabs
+            const tabs = document.querySelectorAll('.events-tab');
+            const contents = document.querySelectorAll('.events-tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const year = tab.dataset.year;
+                    tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+                    contents.forEach(c => { c.classList.toggle('active', c.dataset.year === year); });
+                });
+            });
+        });
+    </script>
 {% endblock content %}

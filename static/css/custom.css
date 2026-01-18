@@ -23,5 +23,6 @@
 /* 3. Page-Specific Styles */
 @import url('pages/landing.css');
 @import url('pages/roadmaps.css');
+@import url('pages/events.css');
 
 /* End of Imports */
