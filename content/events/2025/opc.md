@@ -43,8 +43,6 @@ prize = "Fastest Problem Solvers"
 
 +++
 
-# Write the full details of the event below using Markdown.
-
 ## About OPC
 
 **OPC (Online Programming Contest)** is a competitive coding event organized by the Computer Coding Club to challenge problem-solving skills, logical thinking, and coding speed. It brings together programmers of all levels to compete, learn, and push their limits in a high-energy contest environment.

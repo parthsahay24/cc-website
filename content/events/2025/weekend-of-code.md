@@ -16,13 +16,13 @@ banner_image = "images/events/2025/weekend-of-code/7.webp"
 
 # --- Event Images ---
 images = [
-    "events/2025/weekend-of-code/7.webp",
     "events/2025/weekend-of-code/1.webp",
     "events/2025/weekend-of-code/2.webp",
     "events/2025/weekend-of-code/3.webp",
     "events/2025/weekend-of-code/4.webp",
     "events/2025/weekend-of-code/5.webp",
-    "events/2025/weekend-of-code/6.webp"
+    "events/2025/weekend-of-code/6.webp",
+    "events/2025/weekend-of-code/7.webp",
 ]
 
 # --- Winners (The Podium) ---
