@@ -32,10 +32,12 @@ Features:
 {% for event in subsection.pages %}
 {% set_global all_events = all_events | concat(with=[event]) %}
 {% set event_year = event.date | date(format="%Y") %}
+{% if event.extra.event_type != "program" %}
 {% if event_year == "2026" %}
 {% set_global events_2026 = events_2026 | concat(with=[event]) %}
 {% elif event_year == "2025" %}
 {% set_global events_2025 = events_2025 | concat(with=[event]) %}
+{% endif %}
 {% endif %}
 {# Group by event type #}
 {% if event.extra.event_type == "hackathon" %}
@@ -56,6 +58,21 @@ Features:
 {% endfor %}
 {% endif %}
 {% endfor %}
+
+
+
+{# Sort events: Ongoing/Live first #}
+{% set priority_events = [] %}
+{% set other_events = [] %}
+{% for event in all_events %}
+{% set status = event.extra.status | default(value="") | lower %}
+{% if status == "ongoing" or status == "live" %}
+{% set_global priority_events = priority_events | concat(with=[event]) %}
+{% else %}
+{% set_global other_events = other_events | concat(with=[event]) %}
+{% endif %}
+{% endfor %}
+{% set_global all_events = priority_events | concat(with=other_events) %}
 
 {# Filter events for banner carousel (show_banner = true) #}
 {% set banner_events = [] %}
