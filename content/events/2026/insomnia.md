@@ -13,7 +13,7 @@ date_label = "Feb 2026"
 external_link = "#"
 location = "MNNIT Allahabad"
 participants = "500"
-prize_pool = "TBA"
+prize_pool = "Rs. 30,000"
 banner_image = "events/2026/insomnia/banner.webp"
 show_banner = true
 
