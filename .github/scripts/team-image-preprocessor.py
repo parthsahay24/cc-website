@@ -4,7 +4,7 @@ from pathlib import Path
 
 # Configs
 SCRIPT_DIR = Path(__file__).parent
-BASE_DIR = SCRIPT_DIR.parent
+BASE_DIR = SCRIPT_DIR.parent.parent
 IMAGE_ROOT = BASE_DIR / "static" / "images" / "teams"
 TARGET_SIZE = 500 
 CASCADE_PATH = SCRIPT_DIR / "haarcascade_frontalface_default.xml"

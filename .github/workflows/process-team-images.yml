@@ -26,7 +26,7 @@ jobs:
         run: pip install opencv-python-headless numpy
 
       - name: Run Image Preprocessor
-        run: python scripts/team-image-preprocessor.py
+        run: python .github/scripts/team-image-preprocessor.py
 
       - name: Commit and Push Directly
         uses: stefanzweifel/git-auto-commit-action@v5
