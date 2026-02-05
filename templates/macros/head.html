@@ -236,11 +236,11 @@
       <meta name="theme-color" content="{{ self::get_theme_color(config=config) | trim }}">
 
       <!-- Favicon -->
-      <link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96" />
-      <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
-      <link rel="shortcut icon" href="/icons/favicon.ico" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
-      <link rel="manifest" href="/icons/site.webmanifest" />
+      <link rel="icon" type="image/png" href="{{ get_url(path='icons/favicon-96x96.png') | safe }}" sizes="96x96" />
+      <link rel="icon" type="image/svg+xml" href="{{ get_url(path='icons/favicon.svg') | safe }}" />
+      <link rel="shortcut icon" href="{{ get_url(path='icons/favicon.ico') | safe }}" />
+      <link rel="apple-touch-icon" sizes="180x180" href="{{ get_url(path='icons/apple-touch-icon.png') | safe }}" />
+      <link rel="manifest" href="{{ get_url(path='icons/site.webmanifest') | safe }}" />
 
       <!-- CSS -->
     <link rel="stylesheet" href="{{ get_url(path="css/main.css") | safe }}">
