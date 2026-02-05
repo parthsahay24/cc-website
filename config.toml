@@ -104,6 +104,15 @@ image_padding = "10px"                     # Padding around logo image
 # dark_image_path = "images/logo-dark.webp" # Optional: Different logo for dark theme
 # light_image_path = "images/logo/light-bgm-cc-logo.webp" # Optional: Different logo for light theme
 
+# Favicon Configuration
+[extra.favicon]
+base_path = "/icons/"                              # Base path for all favicon files
+favicon_96x96 = "/icons/favicon-96x96.png"         # 96x96 PNG favicon
+favicon_svg = "/icons/favicon.svg"                 # SVG favicon
+favicon_ico = "/icons/favicon.ico"                 # ICO favicon
+apple_touch_icon = "/icons/apple-touch-icon.png"   # Apple touch icon (180x180)
+site_webmanifest = "/icons/site.webmanifest"       # Web app manifest
+
 # Social Media Configuration
 [extra.twitter]
 site = "@ccclub_mnnit"         
