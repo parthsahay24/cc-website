@@ -1,6 +1,6 @@
 +++
 title = "Competitive Programming Mastery Roadmap"
-description = "From basic syntax to advanced algorithmic mastery for competitive programming"
+description = "Competitive programming (CP) is a challenging and rewarding pursuit for those who enjoy problem-solving and coding. This roadmap is designed to take you from the basics to advanced algorithmic mastery."
 weight = 8
 
 [extra]
@@ -14,10 +14,6 @@ carousel_image = "roadmaps/dsa-cyber.webp"
 carousel_title = "Competitive Programming"
 carousel_description = "Master data structures, algorithms, and rapid problem-solving"
 +++
-
-# Competitive Programming Mastery Roadmap
-
-Competitive programming (CP) is a challenging and rewarding pursuit for those who enjoy problem-solving and coding. This roadmap is designed to take you from the basics to advanced algorithmic mastery.
 
 ## Phase 0: The Mindset (Free Time Content)
 
