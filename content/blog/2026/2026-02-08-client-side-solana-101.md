@@ -31,7 +31,7 @@ Are you a web developer curious about diving into the world of Web3? Welcome to 
 <!-- more -->
 
 
-![Solana 101 Hero — Solana logo with code snippets and blockchain visualization](/images/blog/2026/solana-101/solana-hero.png)
+![Solana 101 Hero — Solana logo with code snippets and blockchain visualization](/images/blog/2026/solana-101/solana-hero.webp)
 
 Whether you're coming from React, Node.js, or any other web development background, Solana's developer-friendly ecosystem makes it surprisingly accessible. By the end of this tutorial, you'll understand how Solana works, have a fully configured development environment, and even create your first token!
 
@@ -45,7 +45,7 @@ Solana is a high-performance blockchain platform designed to handle thousands of
 **Speed & Cost:** Solana handles ~4,000 TPS in practice (theoretically up to 65,000) with fees under $0.01!
 {% end %}
 
-![Solana vs Ethereum — Transaction speed and cost comparison](/images/blog/2026/solana-101/solana-vs-ethereum.png)
+![Solana vs Ethereum — Transaction speed and cost comparison](/images/blog/2026/solana-101/solana-vs-ethereum.webp)
 
 Solana's secret sauce is a combination of several innovations, but the headline one is **Proof of History (PoH)**. PoH is *not* a consensus mechanism — it's a **cryptographic clock**. It creates a verifiable, ordered sequence of timestamps *before* blocks are confirmed. This lets validators agree on the order of events without constant back-and-forth communication.
 
@@ -89,7 +89,7 @@ Before diving into Solana development, let's understand what makes Web3 differen
 | **Payments** | Credit cards, PayPal | Native cryptocurrency |
 | **Censorship** | Platform decides | Mathematically enforced rules |
 
-![Web2 vs Web3 — Centralized vs decentralized architecture](/images/blog/2026/solana-101/web2-vs-web3.png)
+![Web2 vs Web3 — Centralized vs decentralized architecture](/images/blog/2026/solana-101/web2-vs-web3.webp)
 
 ### Understanding Tokens on Solana
 
@@ -470,7 +470,7 @@ You've taken your first steps into Solana development! Here's what you can explo
 
 {{ pretty_link(url="https://www.anchor-lang.com/", title="Anchor Framework", description="The de facto standard for Solana program development") }}
 
-![Solana learning roadmap — From basics to building dApps](/images/blog/2026/solana-101/solana-roadmap.png)
+![Solana learning roadmap — From basics to building dApps](/images/blog/2026/solana-101/solana-roadmap.webp)
 
 ## Troubleshooting Common Issues
 
