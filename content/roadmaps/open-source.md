@@ -232,3 +232,28 @@ It happens to everyone (even Linus Torvalds).
 ---
 
 > **Final Thought**: The hardest part is the first PR. The second hardest is the first rejection. Once you conquer those, you are unstoppable. Good luck!
+
+## Phase 8: The Accelerators (Open Source Programs)
+*Paid, structured mentorship programs that fast-track your career.*
+
+### 8.1 Program Landscape
+Don't just rely on serendipity. These programs offer stipends and guaranteed mentorship.
+
+| Program | Stipend | Duration | Eligibility | Competition | Best For |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **GSoC** | $750 - $3000 | 10-22 wks | Students 18+ | High (20%) | Prestige & Students |
+| **LFX** | $3000 | 12-24 wks | Everyone | Medium (25%) | Enterprise/Cloud |
+| **Outreachy** | $7k | 13 wks | Underrepresented | High (10%) | Diversity & Support |
+| **C4GT** | ₹50k - ₹1L | 10-12 wks | India Students | Medium | India Civic Tech |
+
+### 8.2 Which One For You?
+*   **Google Summer of Code (GSoC)**: The gold standard. Best if you are a student and want maximum resume value. Hardest to get into.
+*   **LFX Mentorship (Linux Foundation)**: Excellent for "real world" cloud/infrastructure projects (Kubernetes, CNCF). Open to non-students.
+*   **Outreachy**: The highest stipend and best mentorship structure. Specifically for women and underrepresented groups in tech.
+
+### 8.3 Strategic Timeline
+*   **Jan-Mar**: Application Period (GSoC, Outreachy).
+*   **May-Aug**: Coding Period (GSoC, Outreachy).
+*   **Year-round**: LFX (Spring, Summer, Fall terms).
+
+> **Pro Tip**: Start contributing 3 months *before* applications open. 90% of selected candidates were already active in the community.
