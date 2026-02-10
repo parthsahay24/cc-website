@@ -11,20 +11,20 @@ status = "completed"
 external_link = "https://weekendofcode2k26.devfolio.co/overview"
 location = "MNNIT Allahabad"
 participants = "500"
-banner_image = "events/2026/weekend-of-code/gallery-2.webp"
+banner_image = "events/2026/weekend-of-code/gallery-02.webp"
 show_banner = true
 
 # --- Event Images ---
 images = [
-    "events/2026/weekend-of-code/gallery-1.webp",
-    "events/2026/weekend-of-code/gallery-2.webp",
-    "events/2026/weekend-of-code/gallery-3.webp",
-    "events/2026/weekend-of-code/gallery-4.webp",
-    "events/2026/weekend-of-code/gallery-5.webp",
-    "events/2026/weekend-of-code/gallery-6.webp",
-    "events/2026/weekend-of-code/gallery-7.webp",
-    "events/2026/weekend-of-code/gallery-8.webp",
-    "events/2026/weekend-of-code/gallery-9.webp",
+    "events/2026/weekend-of-code/gallery-01.webp",
+    "events/2026/weekend-of-code/gallery-02.webp",
+    "events/2026/weekend-of-code/gallery-03.webp",
+    "events/2026/weekend-of-code/gallery-04.webp",
+    "events/2026/weekend-of-code/gallery-05.webp",
+    "events/2026/weekend-of-code/gallery-06.webp",
+    "events/2026/weekend-of-code/gallery-07.webp",
+    "events/2026/weekend-of-code/gallery-08.webp",
+    "events/2026/weekend-of-code/gallery-09.webp",
     "events/2026/weekend-of-code/gallery-10.webp",
     "events/2026/weekend-of-code/gallery-11.webp",
     "events/2026/weekend-of-code/gallery-12.webp",
@@ -40,14 +40,6 @@ images = [
     "events/2026/weekend-of-code/gallery-22.webp",
     "events/2026/weekend-of-code/gallery-23.webp",
     "events/2026/weekend-of-code/gallery-24.webp",
-    "events/2026/weekend-of-code/gallery-25.webp",
-    "events/2026/weekend-of-code/gallery-26.webp",
-    "events/2026/weekend-of-code/gallery-27.webp",
-    "events/2026/weekend-of-code/gallery-28.webp",
-    "events/2026/weekend-of-code/gallery-29.webp",
-    "events/2026/weekend-of-code/gallery-30.webp",
-    "events/2026/weekend-of-code/gallery-31.webp",
-    "events/2026/weekend-of-code/gallery-32.webp",
 ]
 
 # --- Winners (The Podium) ---
