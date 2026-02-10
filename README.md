@@ -72,7 +72,8 @@ We welcome contributions from everyone! Whether you're fixing a typo, adding a b
 
 ## 👥 Maintainers
 
-**Lead Maintainer:** [Shanu Kumawat](https://github.com/Shanu-Kumawat)
+**Lead Maintainer:** [Shanu Kumawat](https://github.com/Shanu-Kumawat) & [Rishi Sulakhe](https://github.com/rishisulakhe)
+
 
 ## 🙏 Contributors
 

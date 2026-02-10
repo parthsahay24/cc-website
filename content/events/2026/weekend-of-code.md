@@ -5,27 +5,127 @@ description = "Starting the year with code, creativity, and collaboration. Weeke
 template = "events/single.html"
 
 [extra]
+# --- Basic Info ---
 event_type = "buildfest"
-status = "ongoing"
-badge = "LIVE"
+status = "completed"
 external_link = "https://weekendofcode2k26.devfolio.co/overview"
 location = "MNNIT Allahabad"
 participants = "500"
-banner_image = "events/2026/weekend-of-code/banner.webp"
+banner_image = "events/2026/weekend-of-code/gallery-2.jpg"
 show_banner = true
 
 # --- Event Images ---
 images = [
-    "events/2026/weekend-of-code/banner.webp",
+    "events/2026/weekend-of-code/gallery-1.png",
+    "events/2026/weekend-of-code/gallery-2.jpg",
+    "events/2026/weekend-of-code/gallery-3.jpg",
+    "events/2026/weekend-of-code/gallery-4.jpg",
+    "events/2026/weekend-of-code/gallery-5.jpg",
+    "events/2026/weekend-of-code/gallery-6.jpg",
+    "events/2026/weekend-of-code/gallery-7.jpg",
+    "events/2026/weekend-of-code/gallery-8.jpg",
+    "events/2026/weekend-of-code/gallery-9.jpg",
+    "events/2026/weekend-of-code/gallery-10.jpg",
+    "events/2026/weekend-of-code/gallery-11.jpg",
+    "events/2026/weekend-of-code/gallery-12.jpg",
+    "events/2026/weekend-of-code/gallery-13.jpg",
+    "events/2026/weekend-of-code/gallery-14.jpg",
+    "events/2026/weekend-of-code/gallery-15.jpg",
+    "events/2026/weekend-of-code/gallery-16.jpg",
+    "events/2026/weekend-of-code/gallery-17.jpg",
+    "events/2026/weekend-of-code/gallery-18.jpg",
+    "events/2026/weekend-of-code/gallery-19.jpg",
+    "events/2026/weekend-of-code/gallery-20.jpg",
+    "events/2026/weekend-of-code/gallery-21.jpg",
+    "events/2026/weekend-of-code/gallery-22.jpg",
+    "events/2026/weekend-of-code/gallery-23.jpg",
+    "events/2026/weekend-of-code/gallery-24.jpg",
+    "events/2026/weekend-of-code/gallery-25.jpg",
+    "events/2026/weekend-of-code/gallery-26.jpg",
+    "events/2026/weekend-of-code/gallery-27.jpg",
+    "events/2026/weekend-of-code/gallery-28.jpg",
+    "events/2026/weekend-of-code/gallery-29.jpg",
+    "events/2026/weekend-of-code/gallery-30.jpg",
+    "events/2026/weekend-of-code/gallery-31.jpg",
+    "events/2026/weekend-of-code/gallery-32.jpg",
 ]
 
 # --- Winners (The Podium) ---
-# Winners to be announced once event concludes
 
-# --- Featured Projects (The Showcase) ---
-# Projects will be showcased here
+# Turing's Playground
+[[extra.winners]]
+name = "attention_is_all_you_need"
+project = "Abhishek Kumar, Roli Rathore, Ritik Raj, Mahee Gupta"
+prize = "Winner"
+category = "Turing's Playground"
+
+[[extra.winners]]
+name = "GradientGurus"
+project = "Sachit Jain, Ashish Singh, Krishna Mittal, Shreeya Srivastava"
+prize = "1st Runner Up"
+category = "Turing's Playground"
+
+[[extra.winners]]
+name = "Naive Boys"
+project = "Pranjal Gupta, Krishna Agarwal, Kunal Upadhyay, Archisman Naskar"
+prize = "2nd Runner Up"
+category = "Turing's Playground"
+
+[[extra.winners]]
+name = "Neural Minds"
+project = "Sanskar Gupta, Rishabh Agarwal, Prashant Bansal, Adarsh Pandey"
+prize = "Best First Year Team"
+category = "Turing's Playground"
+
+# DevJam
+[[extra.winners]]
+name = "CampusConnect"
+project = "Himanshu Thakur, Komal Kushwaha, Anshi Tiwari, Arpit Negi"
+prize = "1st Place"
+category = "DevJam"
+
+[[extra.winners]]
+name = "Codejam"
+project = "Aman Mishra, Ayush Pratap Singh, Suraj Kumar Gupta"
+prize = "2nd Place"
+category = "DevJam"
+
+[[extra.winners]]
+name = "Code Crafters"
+project = "Aayansh Niranjan, Aayush Thakur, Shashwat Agarwal, Adya Tripathi"
+prize = "3rd Place"
+category = "DevJam"
+
+[[extra.winners]]
+name = "Jedi Order"
+project = "Karan Dicholkar, Anunay Singh"
+prize = "Special Mention"
+category = "DevJam"
+
+# CodeStart
+[[extra.winners]]
+name = "The_3unknown_men"
+project = "Lucky Sharma, Piyush Pathak, Ayushman Tiwari"
+prize = "1st Place"
+category = "CodeStart"
+
+[[extra.winners]]
+name = "CheckMate"
+project = "Utkarsh Amritraj, Utkarsh Srivastava"
+prize = "2nd Place"
+category = "CodeStart"
+
+[[extra.winners]]
+name = "Sentinels"
+project = "Kunal Gulrajani, Garvit Jain, Gagan Arela"
+prize = "3rd Place"
+category = "CodeStart"
 
 +++
+
+## Photo Gallery 📸
+
+[Event Gallery: Part 1](https://photos.app.goo.gl/pxgmKzMtwYFZZby66) | [Event Gallery: Part 2](https://drive.google.com/drive/folders/1jltFt3uJF-fZKXFYKA_-kJO1fVA9jh5d)
 
 ## About Weekend of Code 2026
 
