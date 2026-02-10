@@ -71,7 +71,7 @@ footer_made_by = "Team CC"
 footer_links = [
     { name = "Our Team", url = "team" },
     { name = "Blogs", url = "blog" },
-    { name = "Projects", url = "contrihub" },
+    { name = "Projects", url = "projects" },
 ]
 
 # Navigation menu configuration
@@ -120,11 +120,10 @@ creator = "@ccclub_mnnit"
 
 # Social Media Links for Footer
 [extra.social_links]
-youtube = "https://youtube.com/@ccclub" 
-instagram = "https://instagram.com/ccclub_mnnit"
-twitter = "https://twitter.com/ccclub_mnnit"
-linkedin = "https://linkedin.com/company/ccclub-mnnit"
-github = "https://github.com/cc-mnnit"
+linkedin = "https://www.linkedin.com/company/computer-coding-club-mnnit/"
+instagram = "https://www.instagram.com/cc.club.mnnit/"
+github = "https://github.com/CC-MNNIT"
+discord = "https://discord.gg/EDv6fM5yUm"
 
 # Theme Configuration
 [extra.theme]
