@@ -1,5 +1,8 @@
 # Zola
 public
+zola-*.zip
+zola.exe
+zola
 
 # OS generated files
 .DS_Store
